@@ -65,9 +65,15 @@ const doctors = [
 
 // Endpoint to get the list of doctors
 app.get('/doctors', (req, res) => {
-  res.json(doctors);
-});
-
+    const { city } = req.query;
+  
+    if (!city) {
+      return res.status(400).json({ error: 'City parameter is required' });
+    }
+  
+    const filteredDoctors = doctors.filter((doctor) => doctor.city.toLowerCase() === city.toLowerCase());
+    res.json(filteredDoctors);
+  });
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
