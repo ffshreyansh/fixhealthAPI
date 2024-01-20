@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+app.use(cors());
+
+
 // Sample data for doctors
 const doctors = [
   {
